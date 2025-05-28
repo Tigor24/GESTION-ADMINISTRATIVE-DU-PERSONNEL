@@ -3,12 +3,12 @@
 
 @section('content')
 <div class="container-fluid">
-    <h4 class="mb-4">📜 Historique de vos demandes</h4>
+    <h4 class="mb-4">Historique de vos demandes</h4>
 
-    <div class="card shadow">
-        <div class="card-body p-0">
-            <table class="table table-bordered table-hover m-0">
-                <thead class="thead-light">
+    <div class="card card-outline card-secondary">
+        <div class="card-body table-responsive p-0">
+            <table class="table table-bordered text-sm">
+                <thead>
                     <tr>
                         <th>Type</th>
                         <th>Période</th>
@@ -29,7 +29,7 @@
                             <td>{{ $conge->avis_dpaf }}</td>
                         </tr>
                     @empty
-                        <tr><td colspan="6" class="text-center">Aucune demande</td></tr>
+                        <tr><td colspan="6" class="text-center">Aucune demande trouvée.</td></tr>
                     @endforelse
                 </tbody>
             </table>

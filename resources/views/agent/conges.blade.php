@@ -3,67 +3,55 @@
 
 @section('content')
 <div class="container-fluid">
-    <!-- Bloc 1 : Faire une demande -->
-    <div class="mb-3">
-        <a href="{{ route('agent.conges.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus-circle"></i> Faire une demande de congé
-        </a>
-    </div>
+    <h4 class="mb-4">Bonjour, {{ Auth::user()->name }} 👋</h4>
 
-    <!-- Bloc 2 : Résumé -->
     <div class="row">
-        <div class="col-lg-3 col-6">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-info">
-                <div class="inner"><h3>{{ $total }}</h3><p>Total</p></div>
+                <div class="inner">
+                    <h3>{{ $total }}</h3><p>Total</p>
+                </div>
                 <div class="icon"><i class="fas fa-clipboard-list"></i></div>
             </div>
         </div>
-        <div class="col-lg-3 col-6">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-success">
-                <div class="inner"><h3>{{ $valides }}</h3><p>Validés</p></div>
+                <div class="inner">
+                    <h3>{{ $valides }}</h3><p>Validées</p>
+                </div>
                 <div class="icon"><i class="fas fa-check-circle"></i></div>
             </div>
         </div>
-        <div class="col-lg-3 col-6">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-danger">
-                <div class="inner"><h3>{{ $refuses }}</h3><p>Refusés</p></div>
+                <div class="inner">
+                    <h3>{{ $refuses }}</h3><p>Refusées</p>
+                </div>
                 <div class="icon"><i class="fas fa-times-circle"></i></div>
             </div>
         </div>
-        <div class="col-lg-3 col-6">
+        <div class="col-md-3 col-6">
             <div class="small-box bg-warning">
-                <div class="inner"><h3>{{ $en_attente }}</h3><p>En attente</p></div>
+                <div class="inner">
+                    <h3>{{ $en_attente }}</h3><p>En attente</p>
+                </div>
                 <div class="icon"><i class="fas fa-hourglass-half"></i></div>
             </div>
         </div>
     </div>
 
-    <!-- Bloc 3 : Historique -->
-    <div class="card card-outline card-secondary">
-        <div class="card-header"><h3 class="card-title">Historique de vos demandes</h3></div>
-        <div class="card-body table-responsive p-0">
-            <table class="table table-bordered text-sm">
-                <thead>
-                    <tr>
-                        <th>Type</th><th>Période</th><th>Statut</th>
-                        <th>Directeur</th><th>RH</th><th>DPAF</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($conges as $conge)
-                        <tr>
-                            <td>{{ $conge->type }}</td>
-                            <td>{{ $conge->date_debut }} → {{ $conge->date_fin }}</td>
-                            <td><span class="badge bg-{{ $conge->statut === 'validé' ? 'success' : ($conge->statut === 'refusé' ? 'danger' : 'warning') }}">{{ $conge->statut }}</span></td>
-                            <td>{{ $conge->avis_directeur }}</td>
-                            <td>{{ $conge->avis_rh }}</td>
-                            <td>{{ $conge->avis_dpaf }}</td>
-                        </tr>
-                    @empty
-                        <tr><td colspan="6" class="text-center">Aucune demande</td></tr>
-                    @endforelse
-                </tbody>
-            </table>
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <a href="{{ route('agent.conges.create') }}" class="card card-hover p-5 text-center text-decoration-none bg-light">
+                <i class="fas fa-paper-plane fa-2x text-primary mb-2"></i>
+                <h5 class="text-primary">Faire une demande</h5>
+            </a>
+        </div>
+        <div class="col-md-6 mb-3">
+            <a href="{{ route('agent.conges.historique') }}" class="card card-hover p-5 text-center text-decoration-none bg-light">
+                <i class="fas fa-history fa-2x text-dark mb-2"></i>
+                <h5 class="text-dark">Historique des congés</h5>
+            </a>
         </div>
     </div>
 </div>

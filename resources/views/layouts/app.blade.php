@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  @stack('styles')
-  <meta charset="UTF-8">
-  <title>@yield('title', 'Dashboard')</title>
+    <meta charset="UTF-8">
+    <title>@yield('title', 'Dashboard')</title>
 
-  <!-- CSS AdminLTE -->
-  <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <!-- CSS AdminLTE -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
 
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/agent.css') }}">
+    @stack('styles')
 </head>
+
+<script>
+  document.querySelectorAll('.card-hover').forEach(card => {
+    card.addEventListener('mousedown', () => {
+      card.style.transform = 'scale(0.98)';
+    });
+    card.addEventListener('mouseup', () => {
+      card.style.transform = 'scale(1)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'scale(1)';
+    });
+  });
+</script>
+
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+    <div class="wrapper">
 
-  <!-- Navbar -->
-  @include('layouts.navbar')
+        @include('layouts.navbar') <!-- Barre top -->
+        @include('layouts.sidebar') <!-- Menu gauche -->
 
-  <!-- Sidebar -->
-  @include('layouts.sidebar')
+        <div class="content-wrapper p-3">
+            @yield('content')
+        </div>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper p-3">
-    @yield('content')
-  </div>
+    </div>
 
-</div>
-
-<!-- JS -->
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
+    <!-- JS AdminLTE -->
+    <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
 </body>
+
 </html>
